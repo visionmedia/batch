@@ -1,0 +1,13 @@
+{
+    "name": "batch"
+  , "version": "0.0.1"
+  , "description": "Simple async batch"
+  , "keywords": []
+  , "author": "TJ Holowaychuk <tj@vision-media.ca>"
+  , "dependencies": {
+      "mocha": "*"
+    , "should": "*"
+  }
+  , "main": "index"
+  , "engines": { "node": "0.4.x" }
+}
