@@ -3,6 +3,12 @@
 
   Simple async batch
 
+## Installation
+
+```
+$ npm install batch
+```
+
 ## API
 
 ```js
