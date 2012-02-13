@@ -3,7 +3,24 @@
 
   Simple async batch
 
-## License 
+## API
+
+```js
+var Batch = require('batch')
+  , batch = new Batch;
+
+ids.forEach(function(id){
+  batch.push(function(done){
+    User.get(id, done);
+  });
+});
+
+batch.end(function(err, users){
+
+});
+```
+
+## License
 
 (The MIT License)
 
