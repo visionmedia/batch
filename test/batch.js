@@ -15,13 +15,17 @@ describe('Batch', function(){
       })
     })
 
-    it('construct an array of results', function(done){
+    it('construct an array of results in order', function(done){
       batch.push(function(fn){
-        fn(null, 'foo');
+        setTimeout(function(){
+          fn(null, 'foo');
+        }, 50);
       });
       
       batch.push(function(fn){
-        fn(null, 'bar');
+        setTimeout(function(){
+          fn(null, 'bar');
+        }, 2000);
       });
 
       batch.end(function(err, res){
