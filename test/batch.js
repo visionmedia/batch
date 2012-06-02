@@ -19,13 +19,13 @@ describe('Batch', function(){
       batch.push(function(fn){
         setTimeout(function(){
           fn(null, 'foo');
-        }, 50);
+        }, 2000);
       });
       
       batch.push(function(fn){
         setTimeout(function(){
           fn(null, 'bar');
-        }, 2000);
+        }, 50);
       });
 
       batch.end(function(err, res){
