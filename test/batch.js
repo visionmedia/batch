@@ -19,7 +19,7 @@ describe('Batch', function(){
       batch.push(function(fn){
         setTimeout(function(){
           fn(null, 'foo');
-        }, 2000);
+        }, 100);
       });
       
       batch.push(function(fn){
