@@ -21,12 +21,12 @@ ids.forEach(function(id){
   });
 });
 
-batch.end(function(err, users){
-
-});
-
 batch.notify(function(i, user){
   // result of the ith job
+});
+
+batch.end(function(err, users){
+
 });
 ```
 
