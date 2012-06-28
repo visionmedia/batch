@@ -48,6 +48,31 @@ describe('Batch', function(){
         batch.end(done);
       })
     })
+        
+    describe('when a queued function is completed', function(){
+      it('should invoke the notify callback with the result of the finished job', 
+        function(done){
+          
+        batch.push(function(fn){
+          fn(null, 'foo');
+        });
+            
+        batch.push(function(fn){
+          fn(null, 'bar');
+        });
+          
+        batch.notify(function(i, result){
+          if(i == 0){
+            result.should.equal('foo');
+            done();
+          } 
+        })
+          
+        batch.end(function(err, res){
+          if (err) return done(err);
+        })
+      })
+    })
     
     describe('when several errors occur', function(){
       it('should invoke the callback with the first error', function(done){
