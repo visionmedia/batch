@@ -21,6 +21,10 @@ ids.forEach(function(id){
   });
 });
 
+batch.on('complete', function(user, i){
+  // result of the ith job
+});
+
 batch.end(function(err, users){
 
 });
