@@ -61,8 +61,8 @@ describe('Batch', function(){
           fn(null, 'bar');
         });
           
-        batch.notify(function(i, result){
-          if(i == 0){
+        batch.on('complete', function(result, index){
+          if(index == 0){
             result.should.equal('foo');
             done();
           } 

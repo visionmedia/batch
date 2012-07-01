@@ -21,7 +21,7 @@ ids.forEach(function(id){
   });
 });
 
-batch.notify(function(i, user){
+batch.on('complete', function(user, i){
   // result of the ith job
 });
 
