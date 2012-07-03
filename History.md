@@ -1,4 +1,9 @@
 
+0.1.0 / 2012-07-03 
+==================
+
+  * add Emitter inheritance and emit "complete" [burcu]
+
 0.0.3 / 2012-06-02 
 ==================
 
