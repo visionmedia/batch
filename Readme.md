@@ -21,8 +21,9 @@ ids.forEach(function(id){
   });
 });
 
-batch.on('progress', function(user, i){
-  // result of the ith job
+batch.on('progress', function(user, i, total, pending){
+  // result of the ith job, 
+  // total number of fns in the queue and number of pending
 });
 
 batch.end(function(err, users){
