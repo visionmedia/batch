@@ -50,7 +50,7 @@ describe('Batch', function(){
     })
         
     describe('when a queued function is completed', function(){
-      it('should invoke the notify callback with the result of the finished job', 
+      it('should emit progress event with the result of the finished job', 
         function(done){
           
         batch.push(function(fn){
@@ -61,7 +61,7 @@ describe('Batch', function(){
           fn(null, 'bar');
         });
           
-        batch.on('complete', function(result, index){
+        batch.on('progress', function(result, index){
           if(index == 0){
             result.should.equal('foo');
             done();
