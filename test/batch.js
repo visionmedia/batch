@@ -50,8 +50,7 @@ describe('Batch', function(){
     })
         
     describe('when a queued function is completed', function(){
-      it('should invoke the notify callback with the result of the finished job', 
-        function(done){
+      it('should emit "complete" events', function(done){
           
         batch.push(function(fn){
           fn(null, 'foo');
