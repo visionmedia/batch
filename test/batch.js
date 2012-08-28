@@ -50,7 +50,7 @@ describe('Batch', function(){
     })
         
     describe('when a queued function is completed', function(){
-      it('should emit "complete" events', function(done){
+      it('should emit "progress" events', function(done){
           
         batch.push(function(fn){
           fn(null, 'foo');
@@ -60,8 +60,8 @@ describe('Batch', function(){
           fn(null, 'bar');
         });
           
-        batch.on('complete', function(result, index){
-          if(index == 0){
+        batch.on('progress', function(result, index){
+          if (0 == index){
             result.should.equal('foo');
             done();
           } 
