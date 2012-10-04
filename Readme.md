@@ -32,7 +32,7 @@ batch.end(function(err, users){
 
 ### Progress events
 
-  Contain the "job" index, response value, and completion data.
+  Contain the "job" index, response value, duration information, and completion data.
 
 ```js
 { index: 1,
@@ -40,7 +40,10 @@ batch.end(function(err, users){
   pending: 2,
   total: 3,
   complete: 2,
-  percent: 66 }
+  percent: 66,
+  start: Thu Oct 04 2012 12:25:53 GMT-0700 (PDT),
+  end: Thu Oct 04 2012 12:25:53 GMT-0700 (PDT),
+  duration: 0 }
 ```
 
 ## License

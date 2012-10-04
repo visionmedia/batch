@@ -73,6 +73,7 @@ describe('Batch', function(){
               e.total.should.be.a('number');
               e.complete.should.be.a('number');
               e.pending.should.be.a('number');
+              e.duration.should.be.a('number');
               break;
             case 1:
               e.value.should.equal('bar');
