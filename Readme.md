@@ -21,13 +21,26 @@ ids.forEach(function(id){
   });
 });
 
-batch.on('progress', function(user, i){
-  // result of the ith job
+batch.on('progress', function(e){
+  
 });
 
 batch.end(function(err, users){
 
 });
+```
+
+### Progress events
+
+  Contain the "job" index, response value, and completion data.
+
+```js
+{ index: 1,
+  value: 'bar',
+  pending: 2,
+  total: 3,
+  complete: 2,
+  percent: 66 }
 ```
 
 ## License

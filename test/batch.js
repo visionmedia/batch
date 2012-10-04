@@ -59,12 +59,32 @@ describe('Batch', function(){
         batch.push(function(fn){
           fn(null, 'bar');
         });
-          
-        batch.on('progress', function(result, index){
-          if (0 == index){
-            result.should.equal('foo');
-            done();
-          } 
+
+        batch.push(function(fn){
+          fn(null, 'baz');
+        });
+
+        var pending = 3;
+        batch.on('progress', function(e){
+          switch (e.index) {
+            case 0:
+              e.value.should.equal('foo');
+              e.percent.should.be.a('number');
+              e.total.should.be.a('number');
+              e.complete.should.be.a('number');
+              e.pending.should.be.a('number');
+              break;
+            case 1:
+              e.value.should.equal('bar');
+              e.percent.should.be.a('number');
+              break;
+            case 2:
+              e.value.should.equal('baz');
+              e.percent.should.be.a('number');
+              break;
+          }
+
+          --pending || done();
         })
           
         batch.end(function(err, res){
