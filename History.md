@@ -1,4 +1,10 @@
 
+0.2.1 / 2012-11-08 
+==================
+
+  * add .start, .end, and .duration properties
+  * change dependencies to devDependencies
+
 0.2.0 / 2012-10-04 
 ==================
 
