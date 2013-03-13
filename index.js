@@ -19,6 +19,7 @@ module.exports = Batch;
 function Batch() {
   EventEmitter.call(this);
   this.fns = [];
+  this.concurrency(Infinity);
   for (var i = 0, len = arguments.length; i < len; ++i) {
     this.push(arguments[i]);
   }
@@ -71,11 +72,17 @@ Batch.prototype.end = function(cb){
     , pending = total
     , results = []
     , cb = cb || noop
+    , fns = this.fns
+    , max = this.n
     , done;
 
-  if (!this.fns.length) return cb(null, results);
+  // empty
+  if (!fns.length) return cb(null, results);
 
-  this.fns.forEach(function(fn, i){
+  // process
+  function next() {
+    var fn = fns.shift();
+    if (!fn) return;
     var start = new Date;
     fn(function(err, res){
       if (done) return;
@@ -97,9 +104,16 @@ Batch.prototype.end = function(cb){
         duration: end - start
       });
 
-      --pending || cb(null, results);
+      if (--pending) next()
+      else cb(null, results);
     });
-  });
+  }
+
+  // concurrency
+  for (var i = 0; i < fns.length; i++) {
+    if (i == max) break;
+    next();
+  }
 
   return this;
 };
