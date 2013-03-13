@@ -1,7 +1,7 @@
 
 # batch
 
-  Simple async batch
+  Simple async batch with concurrency control and progress reporting.
 
 ## Installation
 
@@ -15,6 +15,8 @@ $ npm install batch
 var Batch = require('batch')
   , batch = new Batch;
 
+batch.concurrency(4);
+
 ids.forEach(function(id){
   batch.push(function(done){
     User.get(id, done);
@@ -22,7 +24,7 @@ ids.forEach(function(id){
 });
 
 batch.on('progress', function(e){
-  
+
 });
 
 batch.end(function(err, users){
@@ -50,7 +52,7 @@ batch.end(function(err, users){
 
 (The MIT License)
 
-Copyright (c) 2011 TJ Holowaychuk &lt;tj@vision-media.ca&gt;
+Copyright (c) 2013 TJ Holowaychuk &lt;tj@vision-media.ca&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
