@@ -31,6 +31,19 @@ function Batch() {
 Batch.prototype.__proto__ = EventEmitter.prototype;
 
 /**
+ * Set concurrency to `n`.
+ *
+ * @param {Number} n
+ * @return {Batch}
+ * @api public
+ */
+
+Batch.prototype.concurrency = function(n){
+  this.n = n;
+  return this;
+};
+
+/**
  * Queue a function.
  *
  * @param {Function} fn
