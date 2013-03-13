@@ -8,7 +8,7 @@ var Batch = require('..');
 var n = 10;
 var batch = new Batch;
 
-batch.concurrency(4);
+batch.concurrency(2);
 
 while (n--) {
   (function(n){
