@@ -41,7 +41,7 @@ function Batch() {
 if (EventEmitter) {
   Batch.prototype.__proto__ = EventEmitter.prototype;
 } else {
-  Emitter(Batch);
+  Emitter(Batch.prototype);
 }
 
 /**
