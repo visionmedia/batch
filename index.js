@@ -74,6 +74,7 @@ Batch.prototype.end = function(cb){
     , cb = cb || noop
     , fns = this.fns
     , max = this.n
+    , index = 0
     , done;
 
   // empty
@@ -81,7 +82,8 @@ Batch.prototype.end = function(cb){
 
   // process
   function next() {
-    var fn = fns.shift();
+    var i = index++;
+    var fn = fns[i];
     if (!fn) return;
     var start = new Date;
     fn(function(err, res){
