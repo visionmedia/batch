@@ -1,4 +1,13 @@
 
+0.3.0 / 2013-03-13 
+==================
+
+  * add component.json
+  * add result example
+  * add .concurrency support
+  * add concurrency example
+  * add parallel example
+
 0.2.1 / 2012-11-08 
 ==================
 
