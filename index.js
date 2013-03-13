@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var EventEmitter = require('events').EventEmitter
+var EventEmitter = require('emitter')
   , noop = function(){};
 
 /**
