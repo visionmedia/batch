@@ -98,7 +98,14 @@ Batch.prototype.end = function(cb){
     var fn = fns[i];
     if (!fn) return;
     var start = new Date;
-    fn(function(err, res){
+
+    try {
+      fn(callback);
+    } catch (err) {
+      callback(err);
+    }
+
+    function callback(err, res){
       if (done) return;
       if (err) return done = true, cb(err);
       var complete = total - pending + 1;
@@ -120,7 +127,7 @@ Batch.prototype.end = function(cb){
 
       if (--pending) next()
       else cb(null, results);
-    });
+    }
   }
 
   // concurrency
