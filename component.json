@@ -1,8 +1,8 @@
 {
   "name": "batch",
-  "repo": "component/batch",
+  "repo": "visionmedia/batch",
   "description": "Async task batching",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "keywords": ["batch", "async", "utility", "concurrency", "concurrent"],
   "dependencies": {
     "component/emitter": "*"
