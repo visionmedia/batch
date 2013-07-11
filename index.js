@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -26,6 +25,7 @@ module.exports = Batch;
  */
 
 function Batch() {
+  if (!(this instanceof Batch)) return new Batch;
   this.fns = [];
   this.concurrency(Infinity);
   for (var i = 0, len = arguments.length; i < len; ++i) {
