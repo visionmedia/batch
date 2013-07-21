@@ -132,6 +132,7 @@ describe('Batch', function(){
         batch.push(function(fn){
           fn(null, 'baz');
         });
+
         batch.throwUp(false);
 
         batch.end(function(err, res){
@@ -142,7 +143,7 @@ describe('Batch', function(){
           err[3].message.should.equal('fail two');
           err[4].should.equal(null);
 
-          res.should.eql(['foo', null, 'bar', null, 'baz']);
+          res.should.eql(['foo', undefined, 'bar', undefined, 'baz']);
 
           done();
         });
