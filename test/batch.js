@@ -110,5 +110,43 @@ describe('Batch', function(){
         });
       })
     })
+    
+    describe('when .throwUp(false) is in effect', function(){
+      it('errors should pile up', function(done){
+        batch.push(function(fn){
+          fn(null, 'foo');
+        });
+
+        batch.push(function(fn){
+          fn(new Error('fail one'));
+        });
+            
+        batch.push(function(fn){
+          fn(null, 'bar');
+        });
+        
+        batch.push(function(fn){
+          fn(new Error('fail two'));
+        });
+
+        batch.push(function(fn){
+          fn(null, 'baz');
+        });
+        batch.throwUp(false);
+
+        batch.end(function(err, res){
+          err.should.be.an.instanceOf(Array);
+          err[0].should.equal(null);
+          err[1].message.should.equal('fail one');
+          err[2].should.equal(null);
+          err[3].message.should.equal('fail two');
+          err[4].should.equal(null);
+
+          res.should.eql(['foo', null, 'bar', null, 'baz']);
+
+          done();
+        });
+      })
+    })
   })
 })
