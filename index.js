@@ -130,6 +130,7 @@ Batch.prototype.end = function(cb){
       self.emit('progress', {
         index: i,
         value: res,
+        error: err,
         pending: pending,
         total: total,
         complete: complete,
