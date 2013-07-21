@@ -28,6 +28,7 @@ function Batch() {
   if (!(this instanceof Batch)) return new Batch;
   this.fns = [];
   this.concurrency(Infinity);
+  this.throwsUp = true;
   for (var i = 0, len = arguments.length; i < len; ++i) {
     this.push(arguments[i]);
   }
@@ -70,6 +71,17 @@ Batch.prototype.push = function(fn){
 };
 
 /**
+ * Set wether Batch will or will not throw up.
+ * 
+ * @param  {Boolean} throwUp
+ * @return {Batch}
+ */
+Batch.prototype.throwUp = function(throwUp) {
+  this.throwsUp = !!throwUp;
+  return this;
+};
+
+/**
  * Execute all queued functions in parallel,
  * executing `cb(err, results)`.
  *
@@ -83,6 +95,7 @@ Batch.prototype.end = function(cb){
     , total = this.fns.length
     , pending = total
     , results = []
+    , errors = []
     , cb = cb || noop
     , fns = this.fns
     , max = this.n
@@ -107,11 +120,12 @@ Batch.prototype.end = function(cb){
 
     function callback(err, res){
       if (done) return;
-      if (err) return done = true, cb(err);
+      if (err && this.throwsUp) return done = true, cb(err);
       var complete = total - pending + 1;
       var end = new Date;
 
       results[i] = res;
+      errors[i] = err;
 
       self.emit('progress', {
         index: i,
@@ -126,6 +140,7 @@ Batch.prototype.end = function(cb){
       });
 
       if (--pending) next()
+      else if(!this.throwsUp) cb(errors, results);
       else cb(null, results);
     }
   }
