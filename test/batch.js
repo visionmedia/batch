@@ -21,7 +21,7 @@ describe('Batch', function(){
           fn(null, 'foo');
         }, 100);
       });
-      
+
       batch.push(function(fn){
         setTimeout(function(){
           fn(null, 'bar');
@@ -40,7 +40,7 @@ describe('Batch', function(){
         batch.push(function(fn){
           process.nextTick(fn);
         })
-        
+
         batch.push(function(fn){
           process.nextTick(fn);
         })
@@ -48,14 +48,14 @@ describe('Batch', function(){
         batch.end(done);
       })
     })
-        
+
     describe('when a queued function is completed', function(){
       it('should emit "progress" events', function(done){
-          
+
         batch.push(function(fn){
           fn(null, 'foo');
         });
-            
+
         batch.push(function(fn){
           fn(null, 'bar');
         });
@@ -87,19 +87,19 @@ describe('Batch', function(){
 
           --pending || done();
         })
-          
+
         batch.end(function(err, res){
           if (err) return done(err);
         })
       })
     })
-    
+
     describe('when several errors occur', function(){
       it('should invoke the callback with the first error', function(done){
         batch.push(function(fn){
           fn(new Error('fail one'));
         })
-        
+
         batch.push(function(fn){
           fn(new Error('fail two'));
         })
@@ -110,7 +110,7 @@ describe('Batch', function(){
         });
       })
     })
-    
+
     describe('when .throwUp(false) is in effect', function(){
       it('errors should pile up', function(done){
         batch.push(function(fn){
@@ -120,11 +120,11 @@ describe('Batch', function(){
         batch.push(function(fn){
           fn(new Error('fail one'));
         });
-            
+
         batch.push(function(fn){
           fn(null, 'bar');
         });
-        
+
         batch.push(function(fn){
           fn(new Error('fail two'));
         });
@@ -133,7 +133,7 @@ describe('Batch', function(){
           fn(null, 'baz');
         });
 
-        batch.throwUp(false);
+        batch.throws(false);
 
         batch.end(function(err, res){
           err.should.be.an.instanceOf(Array);
