@@ -1,4 +1,10 @@
 
+0.5.0 / 2013-07-29 
+==================
+
+ * add `.throws(true)` to opt-in to responding with an array of error objects 
+ * make `new` optional
+
 0.4.0 / 2013-06-05 
 ==================
 
