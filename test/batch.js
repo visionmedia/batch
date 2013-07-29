@@ -1,5 +1,6 @@
 
 var Batch = require('../');
+var assert = require('assert');
 
 describe('Batch', function(){
   var batch;
@@ -111,7 +112,7 @@ describe('Batch', function(){
       })
     })
 
-    describe('when .throwUp(false) is in effect', function(){
+    describe('when .throws(false) is in effect', function(){
       it('errors should pile up', function(done){
         batch.push(function(fn){
           fn(null, 'foo');
@@ -137,14 +138,11 @@ describe('Batch', function(){
 
         batch.end(function(err, res){
           err.should.be.an.instanceOf(Array);
-          err[0].should.equal(null);
-          err[1].message.should.equal('fail one');
-          err[2].should.equal(null);
-          err[3].message.should.equal('fail two');
-          err[4].should.equal(null);
-
+          assert(null == err[0]);
+          assert('fail one' == err[1].message);
+          assert(null == err[2]);
+          assert('fail two' == err[3].message);
           res.should.eql(['foo', undefined, 'bar', undefined, 'baz']);
-
           done();
         });
       })
