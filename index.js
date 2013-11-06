@@ -142,7 +142,7 @@ Batch.prototype.end = function(cb){
         duration: end - start
       });
 
-      if (--pending) next()
+      if (--pending) next();
       else if(!throws) cb(errors, results);
       else cb(null, results);
     }
