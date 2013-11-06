@@ -70,19 +70,19 @@ describe('Batch', function(){
           switch (e.index) {
             case 0:
               e.value.should.equal('foo');
-              e.percent.should.be.a('number');
-              e.total.should.be.a('number');
-              e.complete.should.be.a('number');
-              e.pending.should.be.a('number');
-              e.duration.should.be.a('number');
+              e.percent.should.be.a.Number;
+              e.total.should.be.a.Number;
+              e.complete.should.be.a.Number;
+              e.pending.should.be.a.Number;
+              e.duration.should.be.a.Number;
               break;
             case 1:
               e.value.should.equal('bar');
-              e.percent.should.be.a('number');
+              e.percent.should.be.a.Number;
               break;
             case 2:
               e.value.should.equal('baz');
-              e.percent.should.be.a('number');
+              e.percent.should.be.a.Number;
               break;
           }
 
