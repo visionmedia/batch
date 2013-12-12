@@ -112,6 +112,21 @@ describe('Batch', function(){
       })
     })
 
+    describe('when too many synchronous functions are stacked up', function(){
+      it('should invoke the callback with an error', function(done){
+        for (var i = 0; i < 1000000; i += 1) {
+          batch.push(function(fn){
+            fn(null, 'foo');
+          });
+        }
+
+        batch.end(function(err){
+          assert.notEqual(undefined, err);
+          done();
+        });
+      })
+    })
+
     describe('when .throws(false) is in effect', function(){
       it('errors should pile up', function(done){
         batch.push(function(fn){
