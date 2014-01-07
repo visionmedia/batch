@@ -36,6 +36,15 @@ describe('Batch', function(){
       })
     })
 
+    it('passes arguments to the queued functions', function(done) {
+      batch.push('a', 'b', function(a, b, fn) {
+        a.should.eql('a');
+        b.should.eql('b');
+        fn();
+      });
+      batch.end(done);
+    });
+
     describe('when several functions are queued', function(){
       it('should invoke the callback', function(done){
         batch.push(function(fn){

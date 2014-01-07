@@ -27,6 +27,7 @@ module.exports = Batch;
 function Batch() {
   if (!(this instanceof Batch)) return new Batch;
   this.fns = [];
+  this.fnArgs = [];
   this.concurrency(Infinity);
   this.throws(true);
   for (var i = 0, len = arguments.length; i < len; ++i) {
@@ -65,7 +66,11 @@ Batch.prototype.concurrency = function(n){
  * @api public
  */
 
-Batch.prototype.push = function(fn){
+Batch.prototype.push = function(){
+  var args = Array.prototype.slice.call(arguments);
+  var fn = args.pop();
+
+  this.fnArgs.push(args);
   this.fns.push(fn);
   return this;
 };
@@ -99,6 +104,7 @@ Batch.prototype.end = function(cb){
     , errors = []
     , cb = cb || noop
     , fns = this.fns
+    , fnArgs = this.fnArgs
     , max = this.n
     , throws = this.e
     , index = 0
@@ -110,12 +116,16 @@ Batch.prototype.end = function(cb){
   // process
   function next() {
     var i = index++;
-    var fn = fns[i];
+    var fn = fns[i],
+        args = fnArgs[i];
+
     if (!fn) return;
     var start = new Date;
 
+    args.push(callback);
+
     try {
-      fn(callback);
+      fn.apply(this, args);
     } catch (err) {
       callback(err);
     }
