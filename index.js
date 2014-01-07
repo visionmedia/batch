@@ -68,7 +68,7 @@ Batch.prototype.concurrency = function(n){
 
 Batch.prototype.push = function(){
   var args = Array.prototype.slice.call(arguments);
-  var fn = args.pop();
+  var fn = args.shift();
 
   this.fnArgs.push(args);
   this.fns.push(fn);
