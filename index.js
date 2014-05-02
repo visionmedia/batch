@@ -4,6 +4,7 @@
 
 try {
   var EventEmitter = require('events').EventEmitter;
+  if (!EventEmitter) throw new Error();
 } catch (err) {
   var Emitter = require('emitter');
 }
