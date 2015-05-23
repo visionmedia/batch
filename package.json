@@ -2,12 +2,8 @@
     "name": "batch",
     "description": "Simple async batch with concurrency control and progress reporting.",
     "version": "0.5.3",
-    "licenses": [
-        {
-            "type": "MIT"
-        }
-    ],
     "author": "TJ Holowaychuk <tj@vision-media.ca>",
+    "license": "MIT",
     "devDependencies": {
         "mocha": "*",
         "should": "*"
