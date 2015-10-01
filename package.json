@@ -14,7 +14,7 @@
     },
     "main": "index",
     "browser": {
-        "emitter": "component-emitter"
+        "emitter": "events"
     },
     "repository": {
         "type": "git",
