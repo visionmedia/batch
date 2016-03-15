@@ -13,7 +13,7 @@ $ npm install batch
 
 ```js
 var Batch = require('batch')
-  , batch = new Batch;
+  , batch = new Batch();
 
 batch.concurrency(4);
 
