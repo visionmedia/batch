@@ -114,11 +114,7 @@ Batch.prototype.end = function(cb){
     if (!fn) return;
     var start = new Date;
 
-    try {
-      fn(callback);
-    } catch (err) {
-      callback(err);
-    }
+    fn(callback);
 
     function callback(err, res){
       if (done) return;
