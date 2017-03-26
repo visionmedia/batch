@@ -1,3 +1,10 @@
+0.6.0 / 2017-03-25
+==================
+
+  * always invoke end callback asynchronously
+  * fix compatibility with component v1
+  * fix license field
+
 0.5.3 / 2015-10-01
 ==================
 
