@@ -10,6 +10,14 @@ try {
 }
 
 /**
+ * Defer.
+ */
+
+var defer = typeof process === 'undefined' || typeof process !== 'function'
+  ? function(fn){ setTimeout(fn); }
+  : process.nextTick;
+
+/**
  * Noop.
  */
 
@@ -106,7 +114,9 @@ Batch.prototype.end = function(cb){
     , done;
 
   // empty
-  if (!fns.length) return cb(null, results);
+  if (!fns.length) return defer(function(){
+    cb(null, results);
+  });
 
   // process
   function next() {
@@ -123,7 +133,9 @@ Batch.prototype.end = function(cb){
 
     function callback(err, res){
       if (done) return;
-      if (err && throws) return done = true, cb(err);
+      if (err && throws) return done = true, defer(function(){
+        cb(err);
+      });
       var complete = total - pending + 1;
       var end = new Date;
 
@@ -144,8 +156,10 @@ Batch.prototype.end = function(cb){
       });
 
       if (--pending) next();
-      else if(!throws) cb(errors, results);
-      else cb(null, results);
+      else defer(function(){
+        if(!throws) cb(errors, results);
+        else cb(null, results);
+      });
     }
   }
 
