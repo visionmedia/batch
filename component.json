@@ -5,7 +5,7 @@
   "version": "0.5.2",
   "keywords": ["batch", "async", "utility", "concurrency", "concurrent"],
   "dependencies": {
-    "component/emitter": "*"
+    "juliangruber/events": "*"
   },
   "development": {},
   "scripts": [

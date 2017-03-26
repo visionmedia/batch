@@ -2,11 +2,7 @@
  * Module dependencies.
  */
 
-try {
-  var EventEmitter = require('events').EventEmitter;
-} catch (err) {
-  var Emitter = require('emitter');
-}
+var EventEmitter = require('events').EventEmitter;
 
 /**
  * Noop.
@@ -38,11 +34,14 @@ function Batch() {
  * Inherit from `EventEmitter.prototype`.
  */
 
-if (EventEmitter) {
-  Batch.prototype.__proto__ = EventEmitter.prototype;
-} else {
-  Emitter(Batch.prototype);
-}
+Batch.prototype = Object.create(EventEmitter.prototype, {
+  constructor: {
+    value: Batch,
+    enumerable: false,
+    writable: true,
+    configurable: true,
+  },
+});
 
 /**
  * Set concurrency to `n`.
