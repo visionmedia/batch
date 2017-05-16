@@ -13,7 +13,7 @@ try {
  * Defer.
  */
 
-var defer = typeof process !== 'undefined' && typeof process.nextTick === 'function'
+var defer = typeof process !== 'undefined' && process && typeof process.nextTick === 'function'
   ? process.nextTick
   : function(fn){ setTimeout(fn); };
 
