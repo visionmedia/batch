@@ -1,5 +1,5 @@
-unreleased
-==========
+0.6.1 / 2017-05-16
+==================
 
   * fix `process.nextTick` detection in Node.js
 
