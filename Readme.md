@@ -36,7 +36,7 @@ batch.end(function(err, users){
 
   Contain the "job" index, response value, duration information, and completion data.
 
-```js
+```
 { index: 1,
   value: 'bar',
   pending: 2,
