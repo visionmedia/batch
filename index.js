@@ -13,9 +13,9 @@ try {
  * Defer.
  */
 
-var defer = typeof process === 'undefined' || typeof process !== 'function'
-  ? function(fn){ setTimeout(fn); }
-  : process.nextTick;
+var defer = typeof process !== 'undefined' && process && typeof process.nextTick === 'function'
+  ? process.nextTick
+  : function(fn){ setTimeout(fn); };
 
 /**
  * Noop.
