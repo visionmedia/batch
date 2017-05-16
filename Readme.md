@@ -23,6 +23,12 @@ ids.forEach(function(id){
   });
 });
 
+// Or, with argument passing:
+
+ids.forEach(function(id) {
+  batch.push(User.get, id);
+});
+
 batch.on('progress', function(e){
 
 });

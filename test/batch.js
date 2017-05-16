@@ -21,7 +21,7 @@ describe('Batch', function(){
         setTimeout(function(){
           fn(null, 'foo');
         }, 100);
-      });
+     });
 
       batch.push(function(fn){
         setTimeout(function(){
@@ -35,6 +35,16 @@ describe('Batch', function(){
         done();
       })
     })
+
+    it('passes arguments to the queued functions', function(done) {
+      function checkArgs(a, b, fn) {
+        a.should.eql('a');
+        b.should.eql('b');
+        fn();
+      };
+      batch.push(checkArgs, 'a', 'b');
+      batch.end(done);
+    });
 
     describe('when several functions are queued', function(){
       it('should invoke the callback', function(done){
