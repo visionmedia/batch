@@ -1,5 +1,7 @@
-
 # batch
+
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
 
   Simple async batch with concurrency control and progress reporting.
 
@@ -51,3 +53,8 @@ batch.end(function(err, users){
 ## License
 
 [MIT](LICENSE)
+
+[downloads-image]: https://img.shields.io/npm/dm/batch.svg
+[downloads-url]: https://npmjs.org/package/batch
+[npm-image]: https://img.shields.io/npm/v/batch.svg
+[npm-url]: https://npmjs.org/package/batch
