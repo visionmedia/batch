@@ -6,6 +6,7 @@
   "license": "MIT",
   "repository": "visionmedia/batch",
   "devDependencies": {
+    "after": "0.8.2",
     "mocha": "*"
   },
   "main": "index",

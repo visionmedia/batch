@@ -1,5 +1,6 @@
 
 var Batch = require('../');
+var after = require('after')
 var assert = require('assert');
 
 describe('Batch', function(){
@@ -52,6 +53,7 @@ describe('Batch', function(){
 
     describe('when a queued function is completed', function(){
       it('should emit "progress" events', function(done){
+        var cb = after(4, done)
 
         batch.push(function(fn){
           fn(null, 'foo');
@@ -65,7 +67,6 @@ describe('Batch', function(){
           fn(null, 'baz');
         });
 
-        var pending = 3;
         batch.on('progress', function(e){
           switch (e.index) {
             case 0:
@@ -86,12 +87,10 @@ describe('Batch', function(){
               break;
           }
 
-          --pending || done();
+          cb()
         })
 
-        batch.end(function(err, res){
-          if (err) return done(err);
-        })
+        batch.end(cb)
       })
     })
 
