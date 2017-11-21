@@ -29,9 +29,9 @@ describe('Batch', function(){
         }, 50);
       });
 
-      batch.end(function(err, res){
+      batch.end(function (err, results) {
         if (err) return done(err);
-        res.should.eql(['foo', 'bar']);
+        assert.deepEqual(results, ['foo', 'bar'])
         done();
       })
     })
@@ -69,20 +69,20 @@ describe('Batch', function(){
         batch.on('progress', function(e){
           switch (e.index) {
             case 0:
-              e.value.should.equal('foo');
-              e.percent.should.be.a.Number;
-              e.total.should.be.a.Number;
-              e.complete.should.be.a.Number;
-              e.pending.should.be.a.Number;
-              e.duration.should.be.a.Number;
+              assert.equal(e.value, 'foo')
+              assert.equal(typeof e.percent, 'number')
+              assert.equal(typeof e.total, 'number')
+              assert.equal(typeof e.complete, 'number')
+              assert.equal(typeof e.pending, 'number')
+              assert.equal(typeof e.duration, 'number')
               break;
             case 1:
-              e.value.should.equal('bar');
-              e.percent.should.be.a.Number;
+              assert.equal(e.value, 'bar')
+              assert.equal(typeof e.percent, 'number')
               break;
             case 2:
-              e.value.should.equal('baz');
-              e.percent.should.be.a.Number;
+              assert.equal(e.value, 'baz')
+              assert.equal(typeof e.percent, 'number')
               break;
           }
 
@@ -106,7 +106,7 @@ describe('Batch', function(){
         })
 
         batch.end(function(err){
-          err.message.should.equal('fail one');
+          assert.equal(err.message, 'fail one')
           done();
         });
       })
@@ -136,13 +136,13 @@ describe('Batch', function(){
 
         batch.throws(false);
 
-        batch.end(function(err, res){
-          err.should.be.an.instanceOf(Array);
+        batch.end(function (err, results) {
+          assert.ok(Array.isArray(err), 'err is an array')
           assert(null == err[0]);
           assert('fail one' == err[1].message);
           assert(null == err[2]);
           assert('fail two' == err[3].message);
-          res.should.eql(['foo', undefined, 'bar', undefined, 'baz']);
+          assert.deepStrictEqual(results, ['foo', undefined, 'bar', undefined, 'baz'])
           done();
         });
       })

@@ -6,14 +6,13 @@
   "license": "MIT",
   "repository": "visionmedia/batch",
   "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+    "mocha": "*"
   },
   "main": "index",
   "browser": {
     "emitter": "events"
   },
   "scripts": {
-    "test": "mocha --require should test/"
+    "test": "mocha test/"
   }
 }
