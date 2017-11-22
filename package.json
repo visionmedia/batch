@@ -14,7 +14,7 @@
   ],
   "devDependencies": {
     "after": "0.8.2",
-    "mocha": "*"
+    "mocha": "1.21.5"
   },
   "main": "index",
   "browser": {
