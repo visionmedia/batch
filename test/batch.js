@@ -141,7 +141,7 @@ describe('Batch', function(){
           assert('fail one' == err[1].message);
           assert(null == err[2]);
           assert('fail two' == err[3].message);
-          assert.deepStrictEqual(results, ['foo', undefined, 'bar', undefined, 'baz'])
+          assert.deepEqual(results, ['foo', undefined, 'bar', undefined, 'baz'])
           done();
         });
       })
