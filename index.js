@@ -1,4 +1,10 @@
-/**
+/*!
+ * batch
+ * Copyright(c) 2013-2015 TJ Holowaychuk
+ * MIT Licensed
+ */
+
+ /**
  * Module dependencies.
  */
 
