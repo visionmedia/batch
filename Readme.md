@@ -2,6 +2,7 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
+[![Build Status][travis-image]][travis-url]
 
   Simple async batch with concurrency control and progress reporting.
 
@@ -58,3 +59,5 @@ batch.end(function(err, users){
 [downloads-url]: https://npmjs.org/package/batch
 [npm-image]: https://img.shields.io/npm/v/batch.svg
 [npm-url]: https://npmjs.org/package/batch
+[travis-image]: https://img.shields.io/travis/visionmedia/batch/master.svg
+[travis-url]: https://travis-ci.org/visionmedia/batch
