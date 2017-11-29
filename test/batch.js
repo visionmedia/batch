@@ -71,18 +71,20 @@ describe('Batch', function(){
           switch (e.index) {
             case 0:
               assert.equal(e.value, 'foo')
+              assert.equal(e.total, 3)
               assert.equal(typeof e.percent, 'number')
-              assert.equal(typeof e.total, 'number')
               assert.equal(typeof e.complete, 'number')
               assert.equal(typeof e.pending, 'number')
               assert.equal(typeof e.duration, 'number')
               break;
             case 1:
               assert.equal(e.value, 'bar')
+              assert.equal(e.total, 3)
               assert.equal(typeof e.percent, 'number')
               break;
             case 2:
               assert.equal(e.value, 'baz')
+              assert.equal(e.total, 3)
               assert.equal(typeof e.percent, 'number')
               break;
           }
