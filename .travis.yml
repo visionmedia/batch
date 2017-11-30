@@ -12,5 +12,12 @@ node_js:
   - "6.12"
   - "7.10"
   - "8.9"
+cache:
+  directories:
+    - node_modules
+before_install:
+  # Update Node.js modules
+  - "test ! -d node_modules || npm prune"
+  - "test ! -d node_modules || npm rebuild"
 sudo: false
 dist: precise
