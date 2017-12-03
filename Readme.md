@@ -16,7 +16,45 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 $ npm install batch
 ```
 
-## API
+## Usage
+
+```js
+var Batch = require('batch')
+```
+
+### `new Batch()`
+
+Create a new Batch.
+
+#### `batch.concurrency(n)`
+
+Set concurrency to `n`.
+
+#### `batch.end([cb])`
+
+Execute all queued functions in parallel, executing `cb(err, results)`.
+
+#### `batch.push(fn)`
+
+Queue a function.
+
+### Progress events
+
+  Contain the "job" index, response value, duration information, and completion data.
+
+```
+{ index: 1,
+  value: 'bar',
+  pending: 2,
+  total: 3,
+  complete: 2,
+  percent: 66,
+  start: Thu Oct 04 2012 12:25:53 GMT-0700 (PDT),
+  end: Thu Oct 04 2012 12:25:53 GMT-0700 (PDT),
+  duration: 0 }
+```
+
+## Example
 
 ```js
 var Batch = require('batch')
@@ -37,22 +75,6 @@ batch.on('progress', function(e){
 batch.end(function(err, users){
 
 });
-```
-
-### Progress events
-
-  Contain the "job" index, response value, duration information, and completion data.
-
-```
-{ index: 1,
-  value: 'bar',
-  pending: 2,
-  total: 3,
-  complete: 2,
-  percent: 66,
-  start: Thu Oct 04 2012 12:25:53 GMT-0700 (PDT),
-  end: Thu Oct 04 2012 12:25:53 GMT-0700 (PDT),
-  duration: 0 }
 ```
 
 ## License
