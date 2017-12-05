@@ -42,9 +42,9 @@ Queue a function.
 
 Set wether Batch will or will not throw up.
 
-### Progress events
+#### `progress` event
 
-  Contain the "job" index, response value, duration information, and completion data.
+Contains the "job" index, response value, duration information, and completion data.
 
 ```
 { index: 1,
