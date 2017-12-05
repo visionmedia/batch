@@ -38,6 +38,10 @@ Execute all queued functions in parallel, executing `cb(err, results)`.
 
 Queue a function.
 
+#### `batch.throws(throws)`
+
+Set wether Batch will or will not throw up.
+
 ### Progress events
 
   Contain the "job" index, response value, duration information, and completion data.
