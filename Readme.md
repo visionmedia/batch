@@ -3,6 +3,7 @@
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Build Status][travis-image]][travis-url]
+[![Test Coverage][coveralls-image]][coveralls-url]
 
   Simple async batch with concurrency control and progress reporting.
 
@@ -85,6 +86,8 @@ batch.end(function(err, users){
 
 [MIT](LICENSE)
 
+[coveralls-image]: https://img.shields.io/coveralls/visionmedia/batch/master.svg
+[coveralls-url]: https://coveralls.io/r/visionmedia/batch?branch=master
 [downloads-image]: https://img.shields.io/npm/dm/batch.svg
 [downloads-url]: https://npmjs.org/package/batch
 [npm-image]: https://img.shields.io/npm/v/batch.svg

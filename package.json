@@ -14,13 +14,16 @@
   ],
   "devDependencies": {
     "after": "0.8.2",
-    "mocha": "1.21.5"
+    "mocha": "1.21.5",
+    "nyc": "10.3.2"
   },
   "main": "index",
   "browser": {
     "emitter": "events"
   },
   "scripts": {
-    "test": "mocha test/"
+    "test": "mocha test/",
+    "test-ci": "nyc --reporter=text npm test",
+    "test-cov": "nyc --reporter=html --reporter=text npm test"
   }
 }
