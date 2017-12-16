@@ -4,13 +4,28 @@ var after = require('after')
 var assert = require('assert');
 
 describe('Batch', function(){
-  var batch;
-
-  beforeEach(function(){
-    batch = new Batch;
+  describe('new Batch()', function () {
+    it('should create Batch instance', function () {
+      assert.ok((new Batch()) instanceof Batch)
+    })
   })
 
-  describe('#end(callback)', function(){
+  describe('new Batch(...fns)', function () {
+    it('should create Batch instance with fns', function () {
+      var batch = new Batch(makeCallback('foo'), makeCallback('bar'))
+
+      assert.ok(batch instanceof Batch)
+      assert.equal(batch.fns.length, 2)
+    })
+  })
+
+  describe('#end(cb)', function () {
+    var batch;
+
+    beforeEach(function () {
+      batch = new Batch()
+    })
+
     describe('when no functions are queued', function(){
       it('should invoke the callback', function(done){
         batch.end(done);
@@ -150,3 +165,9 @@ describe('Batch', function(){
     })
   })
 })
+
+function makeCallback (value) {
+  return function (cb) {
+    cb(null, value)
+  }
+}
