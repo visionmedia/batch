@@ -4,6 +4,12 @@ var after = require('after')
 var assert = require('assert');
 
 describe('Batch', function(){
+  describe('Batch()', function () {
+    it('should create Batch instance', function () {
+      assert.ok((Batch()) instanceof Batch)
+    })
+  })
+
   describe('new Batch()', function () {
     it('should create Batch instance', function () {
       assert.ok((new Batch()) instanceof Batch)
