@@ -66,6 +66,21 @@ describe('Batch', function(){
       })
     })
 
+    describe('when no callback given', function () {
+      it('should still process functions', function (done) {
+        var cb = after(2, done)
+
+        batch.push(makeCallback('foo'))
+        batch.push(makeCallback('bar'))
+
+        batch.on('progress', function (e) {
+          cb()
+        })
+
+        batch.end()
+      })
+    })
+
     describe('when a queued function is completed', function(){
       it('should emit "progress" events', function(done){
         var cb = after(4, done)
