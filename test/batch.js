@@ -149,6 +149,19 @@ describe('Batch', function(){
       })
     })
 
+    describe('when error is thrown', function () {
+      it('should invoke the callback with the error', function (done) {
+        batch.push(function () {
+          throw new Error('fail one')
+        })
+
+        batch.end(function (err) {
+          assert.equal(err.message, 'fail one')
+          done()
+        })
+      })
+    })
+
     describe('when .throws(false) is in effect', function(){
       it('errors should pile up', function(done){
         batch.push(function(fn){
