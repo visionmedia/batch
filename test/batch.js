@@ -25,6 +25,82 @@ describe('Batch', function(){
     })
   })
 
+  describe('.concurrency(n)', function () {
+    describe('by default', function () {
+      it('should run all functions at once', function (done) {
+        var batch = new Batch()
+        var cbs = []
+        var next = after(4, function () {
+          cbs.splice(0).forEach(function (cb) {
+            cb()
+          })
+        })
+
+        batch.push(function (cb) {
+          cbs.push(cb)
+          next()
+        })
+
+        batch.push(function (cb) {
+          cbs.push(cb)
+          next()
+        })
+
+        batch.push(function (cb) {
+          cbs.push(cb)
+          next()
+        })
+
+        batch.push(function (cb) {
+          cbs.push(cb)
+          next()
+        })
+
+        batch.end(done)
+      })
+    })
+
+    describe('when 2', function () {
+      it('should run only 2 functions in parallel', function (done) {
+        var batch = new Batch()
+        var cbs = []
+        var fn = function () {
+          setTimeout(function () {
+            next = after(2, fn)
+            cbs.splice(0).forEach(function (cb) {
+              cb()
+            })
+          }, 50)
+        }
+        var next = after(2, fn)
+
+        batch.concurrency(2)
+
+        batch.push(function (cb) {
+          cbs.push(cb)
+          next()
+        })
+
+        batch.push(function (cb) {
+          cbs.push(cb)
+          next()
+        })
+
+        batch.push(function (cb) {
+          cbs.push(cb)
+          next()
+        })
+
+        batch.push(function (cb) {
+          cbs.push(cb)
+          next()
+        })
+
+        batch.end(done)
+      })
+    })
+  })
+
   describe('#end(cb)', function () {
     var batch;
 
