@@ -26,6 +26,20 @@ describe('Batch', function(){
   })
 
   describe('.concurrency(n)', function () {
+    it('should set concurrency', function () {
+      var batch = new Batch()
+
+      batch.concurrency(42)
+
+      assert.equal(batch.n, 42)
+    })
+
+    it('should return batch instance', function () {
+      var batch = new Batch()
+
+      assert.ok(batch.concurrency(42) === batch)
+    })
+
     describe('by default', function () {
       it('should run all functions at once', function (done) {
         var batch = new Batch()
