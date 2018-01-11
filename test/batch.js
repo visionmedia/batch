@@ -115,6 +115,22 @@ describe('Batch', function(){
     })
   })
 
+  describe('.push(fn)', function () {
+    it('should add function', function () {
+      var batch = new Batch()
+
+      batch.push(makeCallback('foo'))
+
+      assert.equal(batch.fns.length, 1)
+    })
+
+    it('should return batch instance', function () {
+      var batch = new Batch()
+
+      assert.ok(batch.push(makeCallback('foo')) === batch)
+    })
+  })
+
   describe('#end(cb)', function () {
     var batch;
 
