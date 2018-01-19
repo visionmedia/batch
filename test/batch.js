@@ -131,6 +131,22 @@ describe('Batch', function(){
     })
   })
 
+  describe('.throws(throws)', function () {
+    it('should set throws option', function () {
+      var batch = new Batch()
+
+      batch.throws(false)
+
+      assert.equal(batch.e, false)
+    })
+
+    it('should return batch instance', function () {
+      var batch = new Batch()
+
+      assert.ok(batch.throws(false) === batch)
+    })
+  })
+
   describe('#end(cb)', function () {
     var batch;
 
