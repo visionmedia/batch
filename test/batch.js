@@ -19,9 +19,28 @@ describe('Batch', function(){
     })
   })
 
+  describe('Batch(options, ...fns)', function () {
+    it('should set options and queue functions', function () {
+      var batch = Batch({ concurrency: 7 }, makeCallback('foo'), makeCallback('bar'))
+
+      assert.strictEqual(batch.n, 7)
+      assert.strictEqual(batch.fns.length, 2)
+    })
+  })
+
   describe('new Batch()', function () {
     it('should create Batch instance', function () {
       assert.ok((new Batch()) instanceof Batch)
+    })
+  })
+
+  describe('new Batch(options)', function () {
+    describe('when "concurrency" set', function () {
+      it('should set default concurrency', function () {
+        var batch = new Batch({ concurrency: 7 })
+
+        assert.strictEqual(batch.n, 7)
+      })
     })
   })
 
@@ -31,6 +50,15 @@ describe('Batch', function(){
 
       assert.ok(batch instanceof Batch)
       assert.equal(batch.fns.length, 2)
+    })
+  })
+
+  describe('new Batch(options, ...fns)', function () {
+    it('should set options and queue functions', function () {
+      var batch = new Batch({ concurrency: 7 }, makeCallback('foo'), makeCallback('bar'))
+
+      assert.strictEqual(batch.n, 7)
+      assert.strictEqual(batch.fns.length, 2)
     })
   })
 

@@ -23,9 +23,15 @@ $ npm install batch
 var Batch = require('batch')
 ```
 
-### `new Batch([...fns])`
+### `new Batch([options], [...fns])`
 
-Create a new Batch, optionally passing a list of functions (`fns`) to queue.
+Create a new Batch, optionally passing an `options` object and/or a list of
+functions (`fns`) to queue.
+
+The `options` object may contain the following keys:
+
+- `concurrency`: set the default `concurrency` for the Batch, which can be changed
+  using `batch.concurrency(n)`.
 
 #### `batch.concurrency(n)`
 

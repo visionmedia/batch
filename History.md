@@ -1,6 +1,7 @@
 unreleased
 ==========
 
+  * Add `options` to constructor to set default `concurrency`
   * Fix passing functions to `Batch` without `new`
   * Wrap conditional require in try-catch for esbuild
   * perf: enable strict mode

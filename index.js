@@ -39,7 +39,7 @@ module.exports = Batch;
  * Create a new Batch.
  */
 
-function Batch() {
+function Batch (options) {
   var args = new Array(arguments.length)
   for (var i = 0; i < arguments.length; i++) {
     args[i] = arguments[i]
@@ -49,8 +49,14 @@ function Batch() {
     return new (Batch.bind.apply(Batch, [null].concat(args)))()
   }
 
+  var opts = {}
+
+  if (args.length > 0 && typeof options !== 'function') {
+    opts = args.shift() || {}
+  }
+
   this.fns = [];
-  this.concurrency(Infinity);
+  this.concurrency(opts.concurrency || Infinity)
   this.throws(true);
 
   for (i = 0; i < args.length; i++) {
