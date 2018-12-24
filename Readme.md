@@ -86,11 +86,11 @@ batch.end(function(err, users){
 
 [MIT](LICENSE)
 
-[coveralls-image]: https://img.shields.io/coveralls/visionmedia/batch/master.svg
+[coveralls-image]: https://badgen.net/coveralls/c/github/visionmedia/batch/master
 [coveralls-url]: https://coveralls.io/r/visionmedia/batch?branch=master
-[downloads-image]: https://img.shields.io/npm/dm/batch.svg
+[downloads-image]: https://badgen.net/npm/dm/batch
 [downloads-url]: https://npmjs.org/package/batch
-[npm-image]: https://img.shields.io/npm/v/batch.svg
+[npm-image]: https://badgen.net/npm/v/batch
 [npm-url]: https://npmjs.org/package/batch
-[travis-image]: https://img.shields.io/travis/visionmedia/batch/master.svg
+[travis-image]: https://badgen.net/travis/visionmedia/batch/master
 [travis-url]: https://travis-ci.org/visionmedia/batch
