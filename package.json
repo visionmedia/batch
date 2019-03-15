@@ -16,7 +16,7 @@
     "after": "0.8.2",
     "eslint": "5.15.1",
     "mocha": "6.0.2",
-    "nyc": "13.1.0"
+    "nyc": "13.3.0"
   },
   "main": "index",
   "browser": {
