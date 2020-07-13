@@ -14,7 +14,7 @@
   ],
   "devDependencies": {
     "after": "0.8.2",
-    "eslint": "7.3.1",
+    "eslint": "7.4.0",
     "mocha": "8.0.1",
     "nyc": "15.1.0"
   },
