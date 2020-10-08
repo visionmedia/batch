@@ -41,7 +41,7 @@ Queue a function.
 
 #### `batch.throws(throws)`
 
-Set wether Batch will or will not throw up.
+Set whether Batch will or will not throw up.
 
 #### `progress` event
 
