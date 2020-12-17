@@ -18,6 +18,29 @@ node_js:
   - "12.6"
 sudo: false
 dist: trusty
+arch:
+  - amd64
+  - ppc64le
+
+matrix:
+    exclude:
+         - node_js: "0.6"
+           arch: ppc64le
+         - node_js: "0.8"
+           arch: ppc64le
+         - node_js: "0.10"
+           arch: ppc64le
+         - node_js: "0.12"
+           arch: ppc64le
+         - node_js: "1.8"
+           arch: ppc64le
+         - node_js: "2.5"
+           arch: ppc64le
+         - node_js: "3.3"
+           arch: ppc64le
+         - node_js: "4.9"
+           arch: ppc64le
+ 
 env:
   global:
     # Suppress Node.js 0.6 compile warnings
