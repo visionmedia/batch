@@ -195,6 +195,10 @@ describe('Batch', function(){
     })
 
     describe('when no callback given', function () {
+      it('should not throw', function () {
+        assert.doesNotThrow(function () { batch.end() })
+      })
+
       it('should still process functions', function (done) {
         var cb = after(2, done)
 
@@ -206,6 +210,19 @@ describe('Batch', function(){
         })
 
         batch.end()
+      })
+
+      it('should still stop on error', function (done) {
+        batch.push(function (cb) { cb(new Error('boom')) })
+        batch.push(makeCallback('bar'))
+
+        batch.on('progress', function (e) {
+          done(new Error('should not be called'))
+        })
+
+        batch.end()
+
+        setTimeout(done, 10)
       })
     })
 
