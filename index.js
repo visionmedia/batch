@@ -24,12 +24,6 @@ var defer = typeof process !== 'undefined' && process && typeof process.nextTick
   : function(fn){ setTimeout(fn); };
 
 /**
- * Noop.
- */
-
-function noop(){}
-
-/**
  * Expose `Batch`.
  */
 
@@ -112,7 +106,6 @@ Batch.prototype.end = function(cb){
     , pending = total
     , results = []
     , errors = []
-    , cb = cb || noop
     , fns = this.fns
     , max = this.n
     , throws = this.e
@@ -120,9 +113,10 @@ Batch.prototype.end = function(cb){
     , done;
 
   // empty
-  if (!fns.length) return defer(function(){
-    cb(null, results);
-  });
+  if (!fns.length) {
+    if (cb) defer(function () { cb(null, results) })
+    return
+  }
 
   // process
   function next() {
@@ -139,9 +133,13 @@ Batch.prototype.end = function(cb){
 
     function callback(err, res){
       if (done) return;
-      if (err && throws) return done = true, defer(function(){
-        cb(err);
-      });
+
+      if (err && throws) {
+        done = true
+        if (cb) defer(function () { cb(err) })
+        return
+      }
+
       var complete = total - pending + 1;
       var end = new Date;
 
@@ -162,10 +160,12 @@ Batch.prototype.end = function(cb){
       });
 
       if (--pending) next();
-      else defer(function(){
-        if(!throws) cb(errors, results);
-        else cb(null, results);
-      });
+      else if (cb) {
+        defer(function () {
+          if (!throws) cb(errors, results)
+          else cb(null, results)
+        })
+      }
     }
   }
 
