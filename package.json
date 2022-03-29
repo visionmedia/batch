@@ -25,7 +25,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "mocha --check-leaks",
-    "test-ci": "nyc --reporter=text npm test",
+    "test-ci": "nyc --reporter=lcovonly --reporter=text npm test",
     "test-cov": "nyc --reporter=html --reporter=text npm test"
   }
 }

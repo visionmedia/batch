@@ -2,7 +2,7 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
-[![Build Status][travis-image]][travis-url]
+[![Build Status][ci-image]][ci-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
 
   Simple async batch with concurrency control and progress reporting.
@@ -86,6 +86,8 @@ batch.end(function(err, users){
 
 [MIT](LICENSE)
 
+[ci-image]: https://badgen.net/github/checks/visionmedia/batch/master?label=ci
+[ci-url]: https://github.com/visionmedia/batch/actions/workflows/ci.yml
 [coveralls-image]: https://badgen.net/coveralls/c/github/visionmedia/batch/master
 [coveralls-url]: https://coveralls.io/r/visionmedia/batch?branch=master
 [downloads-image]: https://badgen.net/npm/dm/batch
@@ -93,4 +95,3 @@ batch.end(function(err, users){
 [npm-image]: https://badgen.net/npm/v/batch
 [npm-url]: https://npmjs.org/package/batch
 [travis-image]: https://badgen.net/travis/visionmedia/batch/master
-[travis-url]: https://travis-ci.org/visionmedia/batch
