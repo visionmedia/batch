@@ -1,6 +1,7 @@
 unreleased
 ==========
 
+  * Wrap conditional require in try-catch for esbuild
   * perf: enable strict mode
   * perf: remove overhead when no end callback
 
