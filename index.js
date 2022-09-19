@@ -15,7 +15,7 @@ try {
   try {
     var Emitter = require('emitter');
   } catch (err) {
-    console.error('Unable to create an emitter:', err);
+    throw err
   }
 }
 
