@@ -199,6 +199,40 @@ jobs:
         flag-name: run-${{ matrix.test_number }}
         parallel: true
 
+  build-pack:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v3
+
+    - name: npm pack
+      run: mkdir build && npm pack --pack-destination build
+
+    - name: upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: npm-pack
+        path: |
+          ./build
+          ./test
+        retention-days: 1
+
+  test-pack:
+    needs: build-pack
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/setup-node@v3
+    - uses: actions/download-artifact@v3
+      with:
+        name: npm-pack
+
+    - name: extract
+      run: tar -xvf ./build/batch-*.tgz --strip-components=1 && rm -rf ./build
+
+    - run: npm install
+
+    - run: npm test
+
   coverage:
     needs: test
     runs-on: ubuntu-latest
