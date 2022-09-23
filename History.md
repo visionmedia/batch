@@ -1,6 +1,7 @@
 unreleased
 ==========
 
+  * perf: enable strict mode
   * perf: remove overhead when no end callback
 
 0.6.1 / 2017-05-16
