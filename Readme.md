@@ -25,7 +25,7 @@ var Batch = require('batch')
 
 ### `new Batch([...fns])`
 
-Create a new Batch.
+Create a new Batch, optionally passing a list of functions (`fns`) to queue.
 
 #### `batch.concurrency(n)`
 
