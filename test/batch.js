@@ -10,6 +10,15 @@ describe('Batch', function(){
     })
   })
 
+  describe('Batch(...fns)', function () {
+    it('should create Batch instance with fns', function () {
+      var batch = Batch(makeCallback('foo'), makeCallback('bar'))
+
+      assert.ok(batch instanceof Batch)
+      assert.equal(batch.fns.length, 2)
+    })
+  })
+
   describe('new Batch()', function () {
     it('should create Batch instance', function () {
       assert.ok((new Batch()) instanceof Batch)

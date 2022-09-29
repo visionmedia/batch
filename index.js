@@ -40,12 +40,21 @@ module.exports = Batch;
  */
 
 function Batch() {
-  if (!(this instanceof Batch)) return new Batch;
+  var args = new Array(arguments.length)
+  for (var i = 0; i < arguments.length; i++) {
+    args[i] = arguments[i]
+  }
+
+  if (!(this instanceof Batch)) {
+    return new (Batch.bind.apply(Batch, [null].concat(args)))()
+  }
+
   this.fns = [];
   this.concurrency(Infinity);
   this.throws(true);
-  for (var i = 0, len = arguments.length; i < len; ++i) {
-    this.push(arguments[i]);
+
+  for (i = 0; i < args.length; i++) {
+    this.push(args[i])
   }
 }
 
