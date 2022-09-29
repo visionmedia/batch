@@ -233,6 +233,40 @@ jobs:
 
     - run: npm test
 
+  build-esbuild:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v3
+
+    - name: esbuild
+      run: mkdir build && npx esbuild index.js --bundle --format=cjs --outfile=build/index.js && cp package.json ./build
+
+    - name: upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: npm-esbuild
+        path: |
+          ./build
+          ./test
+        retention-days: 1
+
+  test-esbuild:
+    needs: build-esbuild
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/setup-node@v3
+    - uses: actions/download-artifact@v3
+      with:
+        name: npm-esbuild
+
+    - name: extract
+      run: cp ./build/* ./ && rm -rf ./build
+
+    - run: npm install --include=dev
+
+    - run: npm test
+
   coverage:
     needs: test
     runs-on: ubuntu-latest
