@@ -32,6 +32,8 @@ The `options` object may contain the following keys:
 
 - `concurrency`: set the default `concurrency` for the Batch, which can be changed
   using `batch.concurrency(n)`.
+- `throws`: set the default `throws` for the Batch, which can be changed using
+  `batch.throws(throws)`.
 
 #### `batch.concurrency(n)`
 

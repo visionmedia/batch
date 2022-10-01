@@ -57,7 +57,7 @@ function Batch (options) {
 
   this.fns = [];
   this.concurrency(opts.concurrency || Infinity)
-  this.throws(true);
+  this.throws(opts.throws === undefined ? true : opts.throws)
 
   for (i = 0; i < args.length; i++) {
     this.push(args[i])

@@ -42,6 +42,14 @@ describe('Batch', function(){
         assert.strictEqual(batch.n, 7)
       })
     })
+
+    describe('when "throws" set', function () {
+      it('should set default throws behavior', function () {
+        var batch = new Batch({ throws: false })
+
+        assert.strictEqual(batch.e, false)
+      })
+    })
   })
 
   describe('new Batch(...fns)', function () {
